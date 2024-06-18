@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?><!--文档声明-->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd"><!--约束-->
+
+<!--    全局配置文件-->
+<configuration>
+    <!--1.配置数据源的环境信息-->
+    <environments default="dev">
+        <!--
+            id=""
+                 dev  开发环境
+                 test 测试环境
+                 pro  生产环境
+        -->
+        <environment id="dev">
+            <!--事务管理器-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--配置数据源信息-->
+            <dataSource type="POOLED">
+                <!--
+                    POOLED      内置连接池
+                    UNPOOLED    不使用连接池
+                -->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"></property>
+                <property name="url" value="jdbc:mysql://localhost:3306/atguigu?serverTimezone=UTC&amp;rewriteBatchedStatements=true"></property>
+                <property name="username" value="root"></property>
+                <property name="password" value="root"></property>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <!--2.配置映射配置文件的路径-->
+    <mappers>
+        <mapper resource="mappers/AccountMapper.xml"></mapper>
+    </mappers>
+
+</configuration>

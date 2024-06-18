@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户编辑页面</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/demo.css">
+</head>
+<body>      <!-- /项目名/account/update  -->
+    <form action="/mvc/account" method="POST">
+        <input type="hidden" name="_method" value="PUT" />
+        <input type="hidden" name="accountId" th:value="${account.accountId}"/>
+        账号名<input type="text" name="accountName" th:value="${account.accountName}"/><br/>
+        账号金额<input type="text" name="money" th:value="${account.money}"/><br/>
+        <button>修改</button>
+    </form>
+
+
+</body>
+</html>

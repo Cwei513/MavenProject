@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>账户列表页面</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/demo.css">
+</head>
+<body>
+<table>
+    <tr>
+        <th>序号</th>
+        <th>账户名</th>
+        <th>账户金额</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="account,status : ${accountList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${account.accountName}"></td>
+        <td th:text="${account.money}"></td>
+        <td>
+            <a th:href="@{'/account/'+ ${account.accountId}}">修改</a>
+            <!--    http://localhost:8080/account/1    修改是GET请求方式   删除是delete请求方式 -->
+            <a id="link" onclick="deleteAccount()" th:href="@{'/account/'+${account.accountId}}">删除</a>
+            <!--
+              a标签只能发送GET请求，只有POST请求方式才能转为Delete/PUT请求方式
+              必须阻止a标签原来的href属性跳转（get方式）
+              取消a标签的默认行为，
+              设置form表单标签的action属性为当前a 标签的href属性
+            -->
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4">
+            <a href="/mvc/add.html"/>添加账户
+        </td>
+    </tr>
+
+</table>
+
+<form id="deleteFrom" method="post" >
+    <input type="hidden" name="_method" value="DELETE">
+</form>
+
+<script>
+    function deleteEmployee(){
+        //1. 取消当前所点击的a标签的默认行为
+        event.preventDefault(); // 阻止默认跳转行为
+        //2. 获取form表单
+        var deleteFrom = document.getElementById("deleteFrom")
+        //3. 获取a标签
+        var link = document.getElementById("link")
+        //4. 设置表单的 action 属性为当前链接的 href 属性
+        // deleteFrom.action = link.href
+        deleteFrom.action = event.target.href
+        //5. 提交表单
+        deleteFrom.submit()
+    }
+</script>
+<!--
+  event.target.href 表示触发事件的元素（即事件目标）的 href 属性的值。用于访问触发事件元素的链接地址
+  link.href 通过直接访问元素对象的属性来获取链接的 href 属性值，
+  event.target.href 在事件处理函数中使用事件对象来访问触发事件元素的 href 属性值。
+-->
+
+</body>
+</html>

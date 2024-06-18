@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    开启AOP-->
+<!--    如果是混合开发方式:那么就是在配置文件中添加<aop:aspectj-autoproxy/>-->
+    <aop:aspectj-autoproxy/>
+
+<!--    包扫描-->
+   <context:component-scan base-package="com.atguigu"></context:component-scan>
+
+    <!--
+        引入properties文件
+    -->
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${datasource.username}"/>
+        <property name="password" value="${datasource.password}"/>
+        <property name="url" value="${datasource.url}"/>
+        <property name="driverClassName" value="${datasource.driverClassName}"/>
+    </bean>
+
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
+        <constructor-arg name="ds" ref="dataSource"/>
+    </bean>
+
+
+
+
+
+
+
+
+</beans>

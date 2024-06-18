@@ -1,0 +1,62 @@
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td, table th {
+    padding: 8px;
+    border: 1px solid #ffcccc; /* 浅红色 */
+    text-align: center; /* 将文字居中 */
+}
+
+table th {
+    background-color: #ff9999; /* 浅红色 */
+}
+
+/* 表单样式 */
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ffcccc; /* 浅红色 */
+    border-radius: 4px;
+}
+
+form textarea {
+    height: 80px;
+}
+
+form input[type="submit"],
+form input[type="button"] {
+    padding: 8px 16px;
+    background-color: #ff6600; /* 橙色 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center; /* 将按钮中的文字居中 */
+}
+
+/* 链接样式 */
+a {
+    color: #ff33cc; /* 紫红色 */
+    text-decoration: none;
+    text-align: center; /* 将链接中的文字居中 */
+}
+
+a:hover {
+    text-decoration: underline;
+}

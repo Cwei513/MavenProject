@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--    映射配置文件-->
+<!--
+  (1) 一个持久层接口就对应一个映射配置文件
+  (2) 建议映射配置文件的文件名与持久层接口的名字保持一致,并且建议映射配置文件放在类路径下的某个子文件夹中例如mappers
+  (3) 映射配置文件的根标签mapper的namespace属性，必须和其对应的持久层接口的全限定名一致
+  (4) 映射配置文件中的一个子标签就对应持久层的一个方法
+    (4.1) 类型对应:增删改查方法就对应insert、delete、update、select标签
+    (4.2) 方法名对应标签的id
+    (4.3) 如果是select标签，那么就必须指定结果集封装到哪个类型中
+    (4.4) 在标签体中编写SQL
+-->
+<mapper namespace="com.atguigu.mappers.AccountMapper">
+    <select id="findAll" resultType="com.atguigu.pojo.Account">
+        SELECT account_id accountId,account_name accountName,money FROM t_account
+    </select>
+</mapper>

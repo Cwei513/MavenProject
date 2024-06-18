@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--1. 配置数据源-->
+    <context:property-placeholder location="classpath:application.properties"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${datasource.username}"/>
+        <property name="password" value="${datasource.password}"/>
+        <property name="url" value="${datasource.url}"/>
+        <property name="driverClassName" value="${datasource.driverClassName}"/>
+    </bean>
+    <!--2. 配置SqlSessionFactoryBean-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--2.1 配置数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--2.2 加载mybatis的全局配置文件-->
+        <!--        <property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+        <!--2.3 设置映射配置文件的路径-->
+        <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+        <!--2.4 类型别名注册-->
+        <property name="typeAliasesPackage" value="com.atguigu.pojo"/>
+        <!--2.5 驼峰映射--> <!-- configuration 对应的是settings -->
+        <property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+                <property name="mapUnderscoreToCamelCase" value="true"/>
+            </bean>
+        </property>
+
+    </bean>
+
+    <!--3. 配置MapperScannerConfigurer，它是去扫描所有持久层接口-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.atguigu.mappers"/>
+
+    </bean>
+    <!--自动扫描指定包下的Mapper接口，并将其注册为Spring的Bean，使其可以被其他组件（如Service层）进行依赖注入和使用。-->
+
+
+
+
+</beans>

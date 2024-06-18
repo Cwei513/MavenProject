@@ -14,6 +14,7 @@ public class Test01 {
         System.out.println("hello");
         System.out.println("hello");
         System.out.println("热修复.............");
+        System.out.println("张三修改了代码......");
         System.out.println("李四修改了代码.............");
     }
 }
